@@ -17,9 +17,13 @@ easynode_collect是easynode系统的基础和核心服务，是其他服务的�
 
 - go version: >=1.16
 - clickhouse 部署和配置
+   [详见](https://github.com/uduncloud/easynode_collect/wiki/clickhouse-%E9%85%8D%E7%BD%AE%E5%92%8C%E9%83%A8%E7%BD%B2)
 - kafka 部署和配置
+   [详见]()
 - etcd  部署和配置
+   [详见]()
 - mysql 部署和配置
+   [详见]()
 
 ## Building the source
 (以linux系统为例)
