@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
-	"easynode_collect/config"
-	"easynode_collect/service/cmd/task"
-	"easynode_collect/service/monitor"
-	"easynode_collect/service/nodeinfo"
 	"flag"
+	"github.com/uduncloud/easynode_collect/config"
+	"github.com/uduncloud/easynode_collect/service/cmd/task"
+	"github.com/uduncloud/easynode_collect/service/monitor"
+	"github.com/uduncloud/easynode_collect/service/nodeinfo"
 	"log"
 	"os"
 	"os/signal"
