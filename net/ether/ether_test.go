@@ -1,4 +1,4 @@
-package eth
+package ether
 
 import (
 	"github.com/sunjiangjun/xlog"

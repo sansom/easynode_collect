@@ -7,7 +7,7 @@ import (
 	"github.com/sunjiangjun/xlog"
 	"github.com/tidwall/gjson"
 	"github.com/uduncloud/easynode_collect/config"
-	"github.com/uduncloud/easynode_collect/net/eth"
+	"github.com/uduncloud/easynode_collect/net/ether"
 	"github.com/uduncloud/easynode_collect/service"
 	"github.com/uduncloud/easynode_collect/service/cmd/db"
 	"math/rand"
@@ -76,7 +76,7 @@ func (s *Service) GetBlockByHash(blockHash string, cfg *config.BlockTask, eLog *
 	}
 
 	//调用接口
-	resp, err := eth.Eth_GetBlockByHash(cluster.Host, cluster.Key, blockHash, s.log)
+	resp, err := ether.Eth_GetBlockByHash(cluster.Host, cluster.Key, blockHash, s.log)
 	if err != nil {
 		eLog.Errorf("Eth_GetBlockByHash|BlockChainName=%v,err=%v,blockHash=%v", s.chain.BlockChainName, err.Error(), blockHash)
 		cluster.ErrorCount++
@@ -110,7 +110,7 @@ func (s *Service) GetBlockByNumber(blockNumber string, task *config.BlockTask, e
 		return nil, nil
 	}
 	//调用接口
-	resp, err := eth.Eth_GetBlockByNumber(cluster.Host, cluster.Key, blockNumber, s.log)
+	resp, err := ether.Eth_GetBlockByNumber(cluster.Host, cluster.Key, blockNumber, s.log)
 	if err != nil {
 		eLog.Errorf("Eth_GetBlockByNumber|BlockChainName=%v,err=%v,blockNumber=%v", s.chain.BlockChainName, err.Error(), blockNumber)
 		cluster.ErrorCount++
@@ -139,7 +139,7 @@ func (s *Service) GetTx(txHash string, task *config.TxTask, eLog *logrus.Entry) 
 		return nil
 	}
 	//调用接口
-	resp, err := eth.Eth_GetTransactionByHash(cluster.Host, cluster.Key, txHash, s.log)
+	resp, err := ether.Eth_GetTransactionByHash(cluster.Host, cluster.Key, txHash, s.log)
 	if err != nil {
 		eLog.Errorf("Eth_GetTransactionByHash|BlockChainName=%v,err=%v,txHash=%v", s.chain.BlockChainName, err.Error(), txHash)
 		cluster.ErrorCount++
@@ -175,9 +175,9 @@ func (s *Service) GetReceiptByBlock(blockHash, number string, task *config.Recei
 			n, _ := strconv.ParseInt(number, 10, 64)
 			number = fmt.Sprintf("0x%x", n)
 		}
-		resp, err = eth.Eth_GetBlockReceiptByBlockNumber(cluster.Host, cluster.Key, number, s.log)
+		resp, err = ether.Eth_GetBlockReceiptByBlockNumber(cluster.Host, cluster.Key, number, s.log)
 	} else if len(number) == 0 && len(blockHash) > 0 {
-		resp, err = eth.Eth_GetBlockReceiptByBlockHash(cluster.Host, cluster.Key, blockHash, s.log)
+		resp, err = ether.Eth_GetBlockReceiptByBlockHash(cluster.Host, cluster.Key, blockHash, s.log)
 	}
 
 	if err != nil {
@@ -207,7 +207,7 @@ func (s *Service) GetReceipt(txHash string, task *config.ReceiptTask, eLog *logr
 		return nil
 	}
 	//调用接口
-	resp, err := eth.Eth_GetTransactionReceiptByHash(cluster.Host, cluster.Key, txHash, s.log)
+	resp, err := ether.Eth_GetTransactionReceiptByHash(cluster.Host, cluster.Key, txHash, s.log)
 	if err != nil {
 		eLog.Errorf("Eth_GetTransactionReceiptByHash|BlockChainName=%v,err=%v,txHash=%v", s.chain.BlockChainName, err.Error(), txHash)
 		cluster.ErrorCount++
