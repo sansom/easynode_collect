@@ -46,7 +46,7 @@
       "BlockTask": {
         "FromCluster": [
           {
-            "Host": "https://api.trongrid.io",
+            "Host": "https://api.trongrid.io/jsonrpc",
             "Key": "**********************"
           }
         ],
@@ -58,7 +58,7 @@
       "TxTask": {
         "FromCluster": [
           {
-            "Host": "https://api.trongrid.io",
+            "Host": "https://api.trongrid.io/jsonrpc",
             "Key": "**********************"
           }
         ],

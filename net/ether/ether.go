@@ -20,7 +20,10 @@ func Eth_GetBlockByHash(host string, token string, blockHash string, log *xlog.X
 
 	//url := "https://eth-mainnet.g.alchemy.com/v2/demo"
 
-	host = fmt.Sprintf("%v/%v", host, token)
+	if len(token) > 1 {
+		host = fmt.Sprintf("%v/%v", host, token)
+	}
+
 	query := `
 {
     "id": 1,
@@ -34,35 +37,7 @@ func Eth_GetBlockByHash(host string, token string, blockHash string, log *xlog.X
 `
 
 	query = fmt.Sprintf(query, blockHash)
-	payload := strings.NewReader(query)
-
-	req, err := http.NewRequest("POST", host, payload)
-	if err != nil {
-		return "", err
-	}
-
-	req.Header.Add("accept", "application/json")
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("cache-control", "no-cache")
-	//req.Header.Add("Postman-Token", "181e4572-a9db-453a-b7d4-17974f785de0")
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return "", err
-	}
-
-	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return "", err
-	}
-
-	if gjson.ParseBytes(body).Get("error").Exists() {
-		return "", errors.New(string(body))
-	}
-
-	return string(body), nil
+	return send(host, query)
 }
 
 // Eth_GetBlockByNumber number: hex value of block number
@@ -73,7 +48,9 @@ func Eth_GetBlockByNumber(host string, token string, number string, log *xlog.XL
 	}()
 	//url := "https://eth-mainnet.g.alchemy.com/v2/demo"
 
-	host = fmt.Sprintf("%v/%v", host, token)
+	if len(token) > 1 {
+		host = fmt.Sprintf("%v/%v", host, token)
+	}
 	query := `
 {
     "id": 1,
@@ -87,35 +64,7 @@ func Eth_GetBlockByNumber(host string, token string, number string, log *xlog.XL
 `
 
 	query = fmt.Sprintf(query, number)
-	payload := strings.NewReader(query)
-
-	req, err := http.NewRequest("POST", host, payload)
-	if err != nil {
-		return "", err
-	}
-
-	req.Header.Add("accept", "application/json")
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("cache-control", "no-cache")
-	//req.Header.Add("Postman-Token", "181e4572-a9db-453a-b7d4-17974f785de0")
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return "", err
-	}
-
-	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return "", err
-	}
-
-	if gjson.ParseBytes(body).Get("error").Exists() {
-		return "", errors.New(string(body))
-	}
-
-	return string(body), nil
+	return send(host, query)
 }
 
 // Eth_GetTransactionByHash number: hex value of block number
@@ -128,7 +77,9 @@ func Eth_GetTransactionByHash(host string, token string, hash string, log *xlog.
 
 	//url := "https://eth-mainnet.g.alchemy.com/v2/demo"
 
-	host = fmt.Sprintf("%v/%v", host, token)
+	if len(token) > 1 {
+		host = fmt.Sprintf("%v/%v", host, token)
+	}
 	query := `
 {
     "id": 1,
@@ -141,33 +92,7 @@ func Eth_GetTransactionByHash(host string, token string, hash string, log *xlog.
 `
 
 	query = fmt.Sprintf(query, hash)
-	payload := strings.NewReader(query)
-
-	req, err := http.NewRequest("POST", host, payload)
-	if err != nil {
-		return "", err
-	}
-
-	req.Header.Add("accept", "application/json")
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("cache-control", "no-cache")
-	//req.Header.Add("Postman-Token", "181e4572-a9db-453a-b7d4-17974f785de0")
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return "", err
-	}
-
-	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return "", err
-	}
-	if gjson.ParseBytes(body).Get("error").Exists() {
-		return "", errors.New(string(body))
-	}
-	return string(body), nil
+	return send(host, query)
 }
 
 // Eth_GetTransactionReceiptByHash number: hex value of block number
@@ -180,7 +105,9 @@ func Eth_GetTransactionReceiptByHash(host string, token string, hash string, log
 
 	//url := "https://eth-mainnet.g.alchemy.com/v2/demo"
 
-	host = fmt.Sprintf("%v/%v", host, token)
+	if len(token) > 1 {
+		host = fmt.Sprintf("%v/%v", host, token)
+	}
 	query := `
 {
     "id": 1,
@@ -193,35 +120,7 @@ func Eth_GetTransactionReceiptByHash(host string, token string, hash string, log
 `
 
 	query = fmt.Sprintf(query, hash)
-	payload := strings.NewReader(query)
-
-	req, err := http.NewRequest("POST", host, payload)
-	if err != nil {
-		return "", err
-	}
-
-	req.Header.Add("accept", "application/json")
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("cache-control", "no-cache")
-	//req.Header.Add("Postman-Token", "181e4572-a9db-453a-b7d4-17974f785de0")
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return "", err
-	}
-
-	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return "", err
-	}
-
-	if gjson.ParseBytes(body).Get("error").Exists() {
-		return "", errors.New(string(body))
-	}
-
-	return string(body), nil
+	return send(host, query)
 }
 
 // Eth_GetBlockReceiptByBlockHash number: hex value of block number
@@ -234,7 +133,9 @@ func Eth_GetBlockReceiptByBlockHash(host string, token string, hash string, log 
 
 	//url := "https://eth-mainnet.g.alchemy.com/v2/demo"
 
-	host = fmt.Sprintf("%v/%v", host, token)
+	if len(token) > 1 {
+		host = fmt.Sprintf("%v/%v", host, token)
+	}
 	query := `
 {
     "id": 1,
@@ -247,35 +148,7 @@ func Eth_GetBlockReceiptByBlockHash(host string, token string, hash string, log 
 `
 
 	query = fmt.Sprintf(query, hash)
-	payload := strings.NewReader(query)
-
-	req, err := http.NewRequest("POST", host, payload)
-	if err != nil {
-		return "", err
-	}
-
-	req.Header.Add("accept", "application/json")
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("cache-control", "no-cache")
-	//req.Header.Add("Postman-Token", "181e4572-a9db-453a-b7d4-17974f785de0")
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return "", err
-	}
-
-	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return "", err
-	}
-
-	if gjson.ParseBytes(body).Get("error").Exists() {
-		return "", errors.New(string(body))
-	}
-
-	return string(body), nil
+	return send(host, query)
 }
 
 // Eth_GetBlockReceiptByBlockNumber number: hex value of block number
@@ -288,7 +161,9 @@ func Eth_GetBlockReceiptByBlockNumber(host string, token string, number string, 
 
 	//url := "https://eth-mainnet.g.alchemy.com/v2/demo"
 
-	host = fmt.Sprintf("%v/%v", host, token)
+	if len(token) > 1 {
+		host = fmt.Sprintf("%v/%v", host, token)
+	}
 	query := `
 {
     "id": 1,
@@ -299,8 +174,11 @@ func Eth_GetBlockReceiptByBlockNumber(host string, token string, number string, 
     ]
 }
 `
-
 	query = fmt.Sprintf(query, number)
+	return send(host, query)
+}
+
+func send(host string, query string) (string, error) {
 	payload := strings.NewReader(query)
 
 	req, err := http.NewRequest("POST", host, payload)
