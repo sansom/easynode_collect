@@ -83,11 +83,11 @@ easynode_collect是easynode系统的基础和核心服务，是其他服务的�
       "NodeWeight":11, //该节点权重
       "PullReceipt": false,//是否自动产生收据任务，默认false，建议 false
       "PullTx": false, //是否自动产生交易任务，默认false，建议 false
-      "BlockTask": {//区块任务配置
+      "BlockTask": {//区块任务配置,缺省该配置 则表示 不执行该类型任务
         "FromCluster": [//区块链节点配置，支持多个
           {
             "Host": "https://eth-mainnet.g.alchemy.com/v2",//三方服务
-            "Key": "RzxBjjh_c4y0LVHZ7GNm8zoXEZR3HYop" //三方服务key
+            "Key": "*************************" //三方服务key
           }
         ],
         "Kafka": {//区块任务对应的Kafka
@@ -95,11 +95,11 @@ easynode_collect是easynode系统的基础和核心服务，是其他服务的�
           "Partition": 0 //partition
         }
       },
-      "TxTask": { //交易任务配置
+      "TxTask": { //交易任务配置 ,缺省该配置 则表示 不执行该类型任务
         "FromCluster": [ //区块链节点配置，支持多个
           {
             "Host": "https://eth-mainnet.g.alchemy.com/v2",
-            "Key": "RzxBjjh_c4y0LVHZ7GNm8zoXEZR3HYop"
+            "Key": "***********************"
           }
         ],
         "Kafka": {//交易任务对应的Kafka
@@ -107,11 +107,11 @@ easynode_collect是easynode系统的基础和核心服务，是其他服务的�
           "Partition": 0
         }
       },
-      "ReceiptTask": {//收据任务配置
+      "ReceiptTask": {//收据任务配置,缺省该配置 则表示 不执行该类型任务
         "FromCluster": [//区块链节点配置，支持多个
           {
             "Host": "https://eth-mainnet.g.alchemy.com/v2",
-            "Key": "RzxBjjh_c4y0LVHZ7GNm8zoXEZR3HYop"
+            "Key": "*****************************"
           }
         ],
         "Kafka": {//收据任务对应的Kafka
