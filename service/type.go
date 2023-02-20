@@ -116,8 +116,8 @@ type Tx struct {
 	TxTime      string `json:"txTime" gorm:"column:tx_time"`
 	TxStatus    string `json:"txStatus" gorm:"column:tx_status"`
 	BlockNumber string `json:"blockNumber" gorm:"column:block_number"`
-	FromAddr    string `json:"from" gorm:"column:from"`
-	ToAddr      string `json:"to" gorm:"column:to"`
+	FromAddr    string `json:"from" gorm:"column:from_addr"`
+	ToAddr      string `json:"to" gorm:"column:to_addr"`
 	Value       string `json:"value" gorm:"column:value"`
 	Fee         string `json:"fee" gorm:"column:fee"`
 	GasPrice    string `json:"gasPrice" gorm:"column:gas_price"`
@@ -126,13 +126,13 @@ type Tx struct {
 	GasUsed     string `json:"gasUsed" gorm:"column:gas_used"`
 	BaseFee     string `json:"baseFeePerGas" gorm:"column:base_fee_per_gas"`
 	PriorityFee string `json:"maxPriorityFeePerGas" gorm:"column:max_priority_fee_per_gas"`
-	InputData   string `json:"input" gorm:"column:input"`
+	InputData   string `json:"input" gorm:"column:input_data"`
 	BlockHash   string `json:"blockHash" gorm:"column:block_hash"`
 	//"transactionIndex": "0x9a",
 	//"type": "0x2",
 
 	TransactionIndex string `json:"transactionIndex" gorm:"column:transaction_index"`
-	Type             string `json:"type" gorm:"column:type"`
+	Type             string `json:"type" gorm:"column:tx_type"`
 }
 
 /**
@@ -176,13 +176,13 @@ type Receipt struct {
 	LogsBloom         string `json:"logsBloom" gorm:"column:logs_bloom"`
 	ContractAddress   string `json:"contractAddress" gorm:"column:contract_address"`
 	TransactionIndex  string `json:"transactionIndex" gorm:"column:transaction_index"`
-	Type              string `json:"type" gorm:"column:type"`
+	Type              string `json:"type" gorm:"column:tx_type"`
 	TransactionHash   string `json:"transactionHash" gorm:"column:transaction_hash"`
 	GasUsed           string `json:"gasUsed" gorm:"column:gas_used"`
 	BlockNumber       string `json:"blockNumber" gorm:"column:block_number"`
 	CumulativeGasUsed string `json:"cumulativeGasUsed" gorm:"column:cumulative_gas_used"`
-	From              string `json:"from" gorm:"column:from"`
-	To                string `json:"to" gorm:"column:to"`
+	From              string `json:"from" gorm:"column:from_addr"`
+	To                string `json:"to" gorm:"column:to_addr"`
 	EffectiveGasPrice string `json:"effectiveGasPrice" gorm:"column:effective_gas_price"`
 	Logs              *Logs  `json:"logs" gorm:"column:logs"`
 	CreateTime        string `json:"createTime" gorm:"column:create_time"` // 2006-01-02
@@ -255,14 +255,14 @@ nonce String
 type Block struct {
 	Id              int64    `json:"id" gorm:"column:id"`
 	BlockHash       string   `json:"hash" gorm:"column:hash"`
-	BlockTime       string   `json:"timestamp" gorm:"column:timestamp"`
+	BlockTime       string   `json:"timestamp" gorm:"column:block_time"`
 	BlockStatus     string   `json:"blockStatus" gorm:"column:block_status"`
-	BlockNumber     string   `json:"number" gorm:"column:number"`
+	BlockNumber     string   `json:"number" gorm:"column:block_number"`
 	ParentHash      string   `json:"parentHash" gorm:"column:parent_hash"`
 	BlockReward     string   `json:"blockReward" gorm:"column:block_reward"`
 	FeeRecipient    string   `json:"feeRecipient" gorm:"column:fee_recipient"`
 	TotalDifficulty string   `json:"totalDifficulty" gorm:"column:total_difficulty"`
-	BlockSize       string   `json:"size" gorm:"column:size"`
+	BlockSize       string   `json:"size" gorm:"column:block_size"`
 	GasLimit        string   `json:"gasLimit" gorm:"column:gas_limit"`
 	GasUsed         string   `json:"gasUsed" gorm:"column:gas_used"`
 	BaseFee         string   `json:"baseFeePerGas" gorm:"column:base_fee_per_gas"`
